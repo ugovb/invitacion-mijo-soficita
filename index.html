@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Soficita, ¿aceptas una cena? · Una invitación de Mijo</title>
+<meta name="description" content="Una invitación interactiva de Mijo para Soficita — para aceptar (o esquivar) una cena.">
+<meta name="theme-color" content="#0e0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   NEXUS Design System
+   ============================================ */
+:root {
+  /* Type */
+  --font-display: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-display: clamp(1.875rem, 5vw + 0.5rem, 3.25rem);
+  --fs-h2: clamp(1.125rem, 1.5vw + 0.75rem, 1.75rem);
+  --fs-body: clamp(0.95rem, 0.4vw + 0.85rem, 1.0625rem);
+  --fs-small: clamp(0.8125rem, 0.3vw + 0.75rem, 0.9375rem);
+  --fs-xs: 0.75rem;
+
+  /* Spacing — 4px system */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px;
+  --space-4: 16px; --space-5: 20px; --space-6: 24px;
+  --space-8: 32px; --space-10: 40px; --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radius */
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme="dark"] {
+  --color-bg: oklch(14% 0.02 270);
+  --color-surface: oklch(20% 0.025 270);
+  --color-surface-2: oklch(26% 0.03 270);
+  --color-text: oklch(96% 0.01 270);
+  --color-text-muted: oklch(72% 0.02 270);
+  --color-text-dim: oklch(55% 0.02 270);
+  --color-accent: oklch(74% 0.12 195);
+  --color-accent-strong: oklch(64% 0.15 195);
+  --color-success: oklch(72% 0.20 145);
+  --color-success-strong: oklch(64% 0.22 145);
+  --color-danger: oklch(62% 0.22 25);
+  --color-border: oklch(30% 0.03 270);
+  --color-star: oklch(95% 0.05 195);
+  --shadow-soft: 0 8px 24px oklch(0% 0 0 / 0.4);
+  --shadow-glow: 0 0 32px oklch(72% 0.20 145 / 0.45);
+}
+
+:root[data-theme="light"] {
+  --color-bg: oklch(98% 0.01 60);
+  --color-surface: oklch(100% 0 0);
+  --color-surface-2: oklch(96% 0.01 60);
+  --color-text: oklch(20% 0.02 270);
+  --color-text-muted: oklch(40% 0.02 270);
+  --color-text-dim: oklch(55% 0.02 270);
+  --color-accent: oklch(54% 0.14 195);
+  --color-accent-strong: oklch(44% 0.16 195);
+  --color-success: oklch(52% 0.18 145);
+  --color-success-strong: oklch(44% 0.20 145);
+  --color-danger: oklch(54% 0.20 25);
+  --color-border: oklch(85% 0.02 60);
+  --color-star: oklch(80% 0.08 60);
+  --shadow-soft: 0 8px 24px oklch(50% 0.05 60 / 0.18);
+  --shadow-glow: 0 0 32px oklch(52% 0.18 145 / 0.45);
+}
+
+/* ============================================
+   Reset
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+  position: relative;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+/* ============================================
+   Stars background
+   ============================================ */
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  background: var(--color-star);
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.3;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.85); }
+  50%      { opacity: 0.95; transform: scale(1.2); }
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  max-width: 640px;
+  margin: 0 auto;
+  gap: var(--space-3);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-accent);
+  min-width: 0;
+}
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-base), transform var(--transition-fast), border-color var(--transition-base);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--color-surface-2); border-color: var(--color-text-dim); }
+.theme-toggle:active { transform: scale(0.94); }
+.theme-toggle:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+
+/* ============================================
+   Main
+   ============================================ */
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  text-align: center;
+  transition: opacity 300ms ease;
+}
+main.is-hidden { opacity: 0; pointer-events: none; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.invitation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.invitation h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+}
+.invitation h1 .accent {
+  color: var(--color-accent);
+}
+.invitation .subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--fs-body);
+  max-width: 44ch;
+  margin: 0 auto;
+}
+
+.countdown {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-4);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.countdown strong {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+  display: inline-block;
+  text-align: center;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.choices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  width: 100%;
+  min-height: 120px;
+  position: relative;
+}
+.btn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-base),
+    background var(--transition-base),
+    color var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  letter-spacing: -0.01em;
+}
+.btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+
+.btn-yes {
+  font-size: var(--fs-h2);
+  padding: var(--space-5) var(--space-10);
+  min-height: 64px;
+  min-width: 220px;
+  background: var(--color-success);
+  color: oklch(98% 0 0);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-glow);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+.btn-yes:hover { background: var(--color-success-strong); transform: translateY(-2px); }
+.btn-yes:active { transform: translateY(0); }
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 oklch(72% 0.20 145 / 0.45); }
+  50%      { transform: scale(1.04); box-shadow: 0 0 0 18px oklch(72% 0.20 145 / 0); }
+}
+
+.btn-no {
+  font-size: var(--fs-small);
+  padding: var(--space-3) var(--space-6);
+  min-height: 44px;
+  min-width: 96px;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  position: relative;
+  z-index: 10;
+  transition-duration: 250ms;
+}
+.btn-no:hover { color: var(--color-text); border-color: var(--color-text-dim); }
+.btn-no.is-tiny {
+  transform: scale(0.3);
+  transition-duration: 900ms !important;
+}
+.btn-no.is-disabled {
+  pointer-events: none;
+  opacity: 0.45;
+  border-style: dashed;
+}
+
+/* ============================================
+   Footnote
+   ============================================ */
+.footnote {
+  margin-top: var(--space-2);
+  font-size: var(--fs-small);
+  color: var(--color-text-dim);
+  line-height: 1.5;
+}
+.footnote .signature {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* ============================================
+   Celebration
+   ============================================ */
+.celebration {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: radial-gradient(ellipse at center, var(--color-surface) 0%, var(--color-bg) 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-6);
+  gap: var(--space-5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  overflow: hidden;
+}
+.celebration.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.celebration h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+.celebration .sub {
+  font-size: var(--fs-h2);
+  color: var(--color-text);
+  max-width: 36ch;
+  font-weight: 500;
+}
+.celebration .detail {
+  font-size: var(--fs-body);
+  color: var(--color-text-muted);
+  max-width: 44ch;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Confetti
+   ============================================ */
+.confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.confetti-piece {
+  position: absolute;
+  top: -24px;
+  width: 10px;
+  height: 16px;
+  background: var(--color-accent);
+  animation: fall var(--duration, 3s) linear var(--delay, 0s) forwards;
+  opacity: 0.95;
+  will-change: transform, opacity;
+}
+@keyframes fall {
+  0%   { transform: translateY(0)     rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ============================================
+   Share button
+   ============================================ */
+.share-btn {
+  margin-top: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-6);
+  min-height: 44px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base), transform var(--transition-fast);
+}
+.share-btn:hover { background: var(--color-surface-2); transform: translateY(-1px); }
+.share-btn:active { transform: translateY(0); }
+.share-btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+.share-btn.is-copied {
+  background: var(--color-success);
+  color: oklch(98% 0 0);
+  border-color: var(--color-success);
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .star         { animation: none; opacity: 0.4; }
+  .btn-yes      { animation: none; }
+  .confetti-piece { display: none; }
+  .btn-no       { transition: none; }
+}
+
+/* ============================================
+   Mobile tweaks
+   ============================================ */
+@media (max-width: 380px) {
+  .btn-yes { min-width: 180px; padding: var(--space-4) var(--space-8); }
+  .invitation h1 { font-size: clamp(1.625rem, 8vw, 2rem); }
+}
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="brand">
+    <svg class="brand-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Pixel-art heart -->
+      <g fill="currentColor">
+        <rect x="4"  y="8"  width="4" height="4" rx="0.5"/>
+        <rect x="8"  y="4"  width="4" height="4" rx="0.5"/>
+        <rect x="20" y="4"  width="4" height="4" rx="0.5"/>
+        <rect x="24" y="8"  width="4" height="4" rx="0.5"/>
+        <rect x="4"  y="12" width="24" height="4" rx="0.5"/>
+        <rect x="4"  y="16" width="24" height="4" rx="0.5"/>
+        <rect x="8"  y="20" width="16" height="4" rx="0.5"/>
+        <rect x="12" y="24" width="8"  height="4" rx="0.5"/>
+      </g>
+      <!-- Circuit traces -->
+      <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round">
+        <path d="M16 28 L16 31"/>
+        <path d="M1 14 L4 14"/>
+        <path d="M28 14 L31 14"/>
+      </g>
+      <g fill="currentColor" opacity="0.55">
+        <circle cx="16" cy="31" r="1"/>
+        <circle cx="1"  cy="14" r="1"/>
+        <circle cx="31" cy="14" r="1"/>
+      </g>
+    </svg>
+    <span class="brand-name">Mijo.dev</span>
+  </div>
+  <button class="theme-toggle" type="button" aria-label="Cambiar tema claro u oscuro">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+  </button>
+</header>
+
+<main id="main">
+  <span class="eyebrow">Una invitación · v1.0</span>
+
+  <section class="invitation">
+    <h1>
+      <span class="accent">Soficita</span>, declaro un bug crítico:<br>
+      me he enamorado.<br>
+      El único fix conocido es una <span class="accent">cena</span> contigo.
+    </h1>
+    <p class="subtitle">¿Aceptas el commit, o seguimos en rama local para siempre?</p>
+  </section>
+
+  <p class="countdown" aria-live="polite">
+    Tienes <strong id="countdown-value">99</strong> segundos para decidir…
+  </p>
+
+  <div class="choices">
+    <button class="btn btn-yes" type="button" id="btn-yes" aria-label="Aceptar la invitación">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      Sí, acepto
+    </button>
+    <button class="btn btn-no" type="button" id="btn-no" aria-label="Rechazar la invitación">
+      No, gracias
+    </button>
+  </div>
+
+  <p class="footnote">
+    Con cariño (y algo de azúcar sintáctica),<br>
+    <span class="signature">— Mijo</span>
+  </p>
+</main>
+
+<aside class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebration-title">
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <h2 id="celebration-title">¡Yesss! 🎉</h2>
+  <p class="sub">Soficita dijo que <strong>SÍ</strong>.</p>
+  <p class="detail">La cena está servida, literalmente. 🍝<br>Prepárate para el mejor merge del año.</p>
+  <button class="share-btn" type="button" id="share-btn" aria-label="Copiar el enlace al portapapeles">
+    📋 Compartir invitación
+  </button>
+</aside>
+
+<script>
+(() => {
+  'use strict';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // === Theme toggle ===
+  const themeBtn = document.querySelector('.theme-toggle');
+  themeBtn.addEventListener('click', () => {
+    const current = document.documentElement.dataset.theme;
+    document.documentElement.dataset.theme = current === 'dark' ? 'light' : 'dark';
+  });
+
+  // === Stars ===
+  const starsContainer = document.querySelector('.stars');
+  const STAR_COUNT = 80;
+  for (let i = 0; i < STAR_COUNT; i++) {
+    const star = document.createElement('span');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top  = Math.random() * 100 + '%';
+    const size = 1 + Math.random() * 2;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.setProperty('--duration', (2 + Math.random() * 3) + 's');
+    star.style.setProperty('--delay', (Math.random() * 4) + 's');
+    starsContainer.appendChild(star);
+  }
+
+  // === Countdown (cosmetic) ===
+  const countdownEl = document.getElementById('countdown-value');
+  const countdownWrap = countdownEl.parentElement;
+  let seconds = 99;
+  const countdownInterval = setInterval(() => {
+    seconds--;
+    if (seconds <= 0) {
+      countdownEl.textContent = '0';
+      countdownWrap.lastChild.nodeValue = '… puedes seguir dudando';
+      clearInterval(countdownInterval);
+      return;
+    }
+    countdownEl.textContent = String(seconds);
+  }, 1000);
+
+  // === NO button behavior ===
+  const btnNo = document.getElementById('btn-no');
+  let noAttempts = 0;
+  const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
+  function teleportButton() {
+    if (reduceMotion) {
+      btnNo.classList.add('is-disabled');
+      return;
+    }
+    const rect = btnNo.getBoundingClientRect();
+    const w = rect.width, h = rect.height;
+    const maxX = Math.max(16, window.innerWidth  - w - 16);
+    const maxY = Math.max(16, window.innerHeight - h - 16);
+    btnNo.style.position = 'fixed';
+    btnNo.style.left = (16 + Math.random() * (maxX - 16)) + 'px';
+    btnNo.style.top  = (16 + Math.random() * (maxY - 16)) + 'px';
+    btnNo.style.right = 'auto';
+    btnNo.style.bottom = 'auto';
+  }
+
+  function slowDownButton() {
+    btnNo.classList.add('is-tiny');
+  }
+
+  if (isTouchDevice) {
+    btnNo.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      noAttempts++;
+      if (noAttempts >= 3) {
+        btnNo.textContent = 'No disponible 😅';
+        btnNo.classList.add('is-disabled');
+        return;
+      }
+      btnNo.style.display = 'none';
+      setTimeout(() => {
+        const x = 16 + Math.random() * (window.innerWidth  - 100);
+        const y = 16 + Math.random() * (window.innerHeight - 60);
+        btnNo.style.position = 'fixed';
+        btnNo.style.left = x + 'px';
+        btnNo.style.top  = y + 'px';
+        btnNo.style.right = 'auto';
+        btnNo.style.bottom = 'auto';
+        btnNo.style.display = 'inline-flex';
+      }, 800);
+    }, { passive: false });
+  } else {
+    btnNo.addEventListener('mouseover', () => {
+      noAttempts++;
+      if (noAttempts >= 3) slowDownButton();
+      teleportButton();
+    });
+  }
+
+  // === YES → celebration ===
+  const btnYes     = document.getElementById('btn-yes');
+  const mainEl     = document.getElementById('main');
+  const celebration = document.getElementById('celebration');
+  const confettiEl = document.getElementById('confetti');
+
+  btnYes.addEventListener('click', () => {
+    clearInterval(countdownInterval);
+    mainEl.classList.add('is-hidden');
+    setTimeout(() => {
+      mainEl.style.display = 'none';
+      celebration.classList.add('is-visible');
+      spawnConfetti();
+    }, 320);
+  });
+
+  function spawnConfetti() {
+    if (reduceMotion) return;
+    const colors = [
+      'var(--color-accent)',
+      'var(--color-success)',
+      'var(--color-accent-strong)',
+      '#f59e0b',
+      '#ec4899',
+      '#a855f7'
+    ];
+    const COUNT = 70;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < COUNT; i++) {
+      const piece = document.createElement('span');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.setProperty('--duration', (2 + Math.random() * 3.5) + 's');
+      piece.style.setProperty('--delay',    (Math.random() * 1.6) + 's');
+      piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      piece.style.width  = (6 + Math.random() * 6)  + 'px';
+      piece.style.height = (10 + Math.random() * 10) + 'px';
+      frag.appendChild(piece);
+    }
+    confettiEl.appendChild(frag);
+  }
+
+  // === Share ===
+  const shareBtn = document.getElementById('share-btn');
+  const shareOriginalText = shareBtn.textContent;
+  shareBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      shareBtn.textContent = '✅ ¡Enlace copiado!';
+      shareBtn.classList.add('is-copied');
+    } catch (err) {
+      shareBtn.textContent = 'Copia el enlace manualmente';
+    }
+    setTimeout(() => {
+      shareBtn.textContent = shareOriginalText;
+      shareBtn.classList.remove('is-copied');
+    }, 2200);
+  });
+})();
+</script>
+</body>
+</html>
