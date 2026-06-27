@@ -1,27 +1,28 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Soficita, ¿aceptas una cena? · Una invitación de Mijo</title>
-<meta name="description" content="Una invitación interactiva de Mijo para Soficita — para aceptar (o esquivar) una cena.">
-<meta name="theme-color" content="#0e0d12">
+<title>Soficita, ¿te apuntas esta noche? · Un plan de Mijo</title>
+<meta name="description" content="Una invitación interactiva de Mijo para Soficita — para aceptar (o esquivar) un plan para esta noche.">
+<meta name="theme-color" content="#faf5ef">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================
-   NEXUS Design System
+   Nova Luce Design System
+   Warm earth tones · afternoon light
    ============================================ */
 :root {
   /* Type */
-  --font-display: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --fs-display: clamp(1.875rem, 5vw + 0.5rem, 3.25rem);
-  --fs-h2: clamp(1.125rem, 1.5vw + 0.75rem, 1.75rem);
-  --fs-body: clamp(0.95rem, 0.4vw + 0.85rem, 1.0625rem);
-  --fs-small: clamp(0.8125rem, 0.3vw + 0.75rem, 0.9375rem);
-  --fs-xs: 0.75rem;
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-display: clamp(2rem, 4.5vw + 1rem, 3.5rem);
+  --fs-h2: clamp(1.25rem, 1.5vw + 0.875rem, 1.875rem);
+  --fs-body: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
+  --fs-small: clamp(0.875rem, 0.3vw + 0.8rem, 1rem);
+  --fs-xs: 0.8125rem;
 
   /* Spacing — 4px system */
   --space-1: 4px; --space-2: 8px; --space-3: 12px;
@@ -34,44 +35,42 @@
   --radius-pill: 999px;
 
   /* Motion */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-:root[data-theme="dark"] {
-  --color-bg: oklch(14% 0.02 270);
-  --color-surface: oklch(20% 0.025 270);
-  --color-surface-2: oklch(26% 0.03 270);
-  --color-text: oklch(96% 0.01 270);
-  --color-text-muted: oklch(72% 0.02 270);
-  --color-text-dim: oklch(55% 0.02 270);
-  --color-accent: oklch(74% 0.12 195);
-  --color-accent-strong: oklch(64% 0.15 195);
-  --color-success: oklch(72% 0.20 145);
-  --color-success-strong: oklch(64% 0.22 145);
-  --color-danger: oklch(62% 0.22 25);
-  --color-border: oklch(30% 0.03 270);
-  --color-star: oklch(95% 0.05 195);
-  --shadow-soft: 0 8px 24px oklch(0% 0 0 / 0.4);
-  --shadow-glow: 0 0 32px oklch(72% 0.20 145 / 0.45);
+  --transition-fast: 180ms ease;
+  --transition-base: 320ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 :root[data-theme="light"] {
-  --color-bg: oklch(98% 0.01 60);
-  --color-surface: oklch(100% 0 0);
-  --color-surface-2: oklch(96% 0.01 60);
-  --color-text: oklch(20% 0.02 270);
-  --color-text-muted: oklch(40% 0.02 270);
-  --color-text-dim: oklch(55% 0.02 270);
-  --color-accent: oklch(54% 0.14 195);
-  --color-accent-strong: oklch(44% 0.16 195);
-  --color-success: oklch(52% 0.18 145);
-  --color-success-strong: oklch(44% 0.20 145);
-  --color-danger: oklch(54% 0.20 25);
-  --color-border: oklch(85% 0.02 60);
-  --color-star: oklch(80% 0.08 60);
-  --shadow-soft: 0 8px 24px oklch(50% 0.05 60 / 0.18);
-  --shadow-glow: 0 0 32px oklch(52% 0.18 145 / 0.45);
+  --color-bg: #faf5ef;             /* cream */
+  --color-surface: #ffffff;
+  --color-surface-2: #f5e6d3;      /* warm white */
+  --color-text: #2c1f15;           /* deep warm brown */
+  --color-text-muted: #6b5847;
+  --color-text-dim: #9c8a78;
+  --color-accent: #c4826a;         /* terracotta */
+  --color-accent-strong: #a86651;
+  --color-success: #c4826a;        /* terracotta as "yes" */
+  --color-success-strong: #a86651;
+  --color-border: #e8dccb;
+  --color-dust: #d4a574;           /* warm gold dust */
+  --shadow-soft: 0 8px 24px rgba(60, 40, 25, 0.08);
+  --shadow-glow: 0 0 32px rgba(196, 130, 106, 0.35);
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #1f1612;             /* warm deep brown */
+  --color-surface: #2a1f18;
+  --color-surface-2: #382a20;
+  --color-text: #faf5ef;
+  --color-text-muted: #c4b5a5;
+  --color-text-dim: #8a7a6a;
+  --color-accent: #d4927a;
+  --color-accent-strong: #e0a48d;
+  --color-success: #d4927a;
+  --color-success-strong: #e0a48d;
+  --color-border: #4a3a2e;
+  --color-dust: #e8b86d;
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 32px rgba(212, 146, 122, 0.35);
 }
 
 /* ============================================
@@ -82,7 +81,7 @@ html, body { height: 100%; }
 body {
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--color-text);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
@@ -93,8 +92,20 @@ body {
   transition: background var(--transition-base), color var(--transition-base);
 }
 
+/* Subtle warm gradient on body — like afternoon light through a window */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(232, 184, 109, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 100%, rgba(196, 130, 106, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
 /* ============================================
-   Stars background
+   Floating dust motes (replaces stars)
    ============================================ */
 .stars {
   position: fixed;
@@ -105,15 +116,16 @@ body {
 }
 .star {
   position: absolute;
-  background: var(--color-star);
+  background: var(--color-dust);
   border-radius: 50%;
-  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation: drift var(--duration, 12s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);
-  opacity: 0.3;
+  opacity: 0.35;
+  filter: blur(0.5px);
 }
-@keyframes twinkle {
-  0%, 100% { opacity: 0.15; transform: scale(0.85); }
-  50%      { opacity: 0.95; transform: scale(1.2); }
+@keyframes drift {
+  0%, 100% { opacity: 0.15; transform: translate(0, 0) scale(0.9); }
+  50%      { opacity: 0.6;  transform: translate(8px, -12px) scale(1.15); }
 }
 
 /* ============================================
@@ -123,7 +135,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-5) var(--space-6);
   max-width: 640px;
   margin: 0 auto;
   gap: var(--space-3);
@@ -136,17 +148,17 @@ body {
   min-width: 0;
 }
 .brand-logo {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: block;
   flex-shrink: 0;
 }
 .brand-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: var(--fs-body);
+  font-size: 1.25rem;
   color: var(--color-text);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,10 +174,10 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background var(--transition-base), transform var(--transition-fast), border-color var(--transition-base);
+  transition: background var(--transition-base), transform var(--transition-fast), border-color var(--transition-base), color var(--transition-base);
   flex-shrink: 0;
 }
-.theme-toggle:hover { background: var(--color-surface-2); border-color: var(--color-text-dim); }
+.theme-toggle:hover { background: var(--color-surface-2); border-color: var(--color-accent); color: var(--color-accent); }
 .theme-toggle:active { transform: scale(0.94); }
 .theme-toggle:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .theme-toggle svg { width: 20px; height: 20px; }
@@ -177,9 +189,9 @@ body {
    Main
    ============================================ */
 main {
-  max-width: 560px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: var(--space-8) var(--space-5) var(--space-12);
+  padding: var(--space-10) var(--space-6) var(--space-12);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,52 +202,61 @@ main {
 main.is-hidden { opacity: 0; pointer-events: none; }
 
 .eyebrow {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: var(--fs-xs);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   color: var(--color-accent);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .invitation {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 .invitation h1 {
   font-family: var(--font-display);
   font-size: var(--fs-display);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
   color: var(--color-text);
+  max-width: 32ch;
+  margin: 0 auto;
 }
 .invitation h1 .accent {
   color: var(--color-accent);
+  font-style: normal;
+  font-weight: 600;
 }
 .invitation .subtitle {
   color: var(--color-text-muted);
   font-size: var(--fs-body);
-  max-width: 44ch;
+  max-width: 46ch;
   margin: 0 auto;
+  line-height: 1.55;
 }
 
 .countdown {
   font-family: var(--font-display);
+  font-style: italic;
   font-size: var(--fs-small);
   color: var(--color-text-muted);
-  padding: var(--space-2) var(--space-4);
-  border: 1px dashed var(--color-border);
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+  background: var(--color-surface);
 }
 .countdown strong {
   color: var(--color-accent);
-  font-weight: 700;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  font-style: normal;
   min-width: 2ch;
   display: inline-block;
   text-align: center;
@@ -249,14 +270,14 @@ main.is-hidden { opacity: 0; pointer-events: none; }
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
   width: 100%;
   min-height: 120px;
   position: relative;
 }
 .btn {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   border: none;
   cursor: pointer;
   transition:
@@ -271,26 +292,27 @@ main.is-hidden { opacity: 0; pointer-events: none; }
   text-decoration: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
 }
 .btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 
 .btn-yes {
-  font-size: var(--fs-h2);
-  padding: var(--space-5) var(--space-10);
+  font-size: 1.375rem;
+  font-style: italic;
+  padding: var(--space-5) var(--space-12);
   min-height: 64px;
   min-width: 220px;
   background: var(--color-success);
-  color: oklch(98% 0 0);
+  color: #fffaf3;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-glow);
-  animation: pulse 1.6s ease-in-out infinite;
+  animation: glow 3s ease-in-out infinite;
 }
 .btn-yes:hover { background: var(--color-success-strong); transform: translateY(-2px); }
 .btn-yes:active { transform: translateY(0); }
-@keyframes pulse {
-  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 oklch(72% 0.20 145 / 0.45); }
-  50%      { transform: scale(1.04); box-shadow: 0 0 0 18px oklch(72% 0.20 145 / 0); }
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 130, 106, 0.45), 0 8px 24px rgba(60, 40, 25, 0.08); }
+  50%      { box-shadow: 0 0 0 16px rgba(196, 130, 106, 0), 0 8px 24px rgba(60, 40, 25, 0.08); }
 }
 
 .btn-no {
@@ -304,7 +326,7 @@ main.is-hidden { opacity: 0; pointer-events: none; }
   border-radius: var(--radius-pill);
   position: relative;
   z-index: 10;
-  transition-duration: 250ms;
+  transition-duration: 280ms;
 }
 .btn-no:hover { color: var(--color-text); border-color: var(--color-text-dim); }
 .btn-no.is-tiny {
@@ -321,14 +343,17 @@ main.is-hidden { opacity: 0; pointer-events: none; }
    Footnote
    ============================================ */
 .footnote {
-  margin-top: var(--space-2);
-  font-size: var(--fs-small);
-  color: var(--color-text-dim);
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-body);
+  color: var(--color-text-muted);
   line-height: 1.5;
 }
 .footnote .signature {
   color: var(--color-accent);
-  font-weight: 500;
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* ============================================
@@ -344,8 +369,8 @@ main.is-hidden { opacity: 0; pointer-events: none; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-6);
-  gap: var(--space-5);
+  padding: var(--space-8) var(--space-6);
+  gap: clamp(var(--space-5), 4vh, var(--space-10));
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-base);
@@ -357,27 +382,60 @@ main.is-hidden { opacity: 0; pointer-events: none; }
 }
 .celebration h2 {
   font-family: var(--font-display);
-  font-size: var(--fs-display);
-  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(2.75rem, 6.5vw + 0.75rem, 5rem);
+  font-weight: 500;
   color: var(--color-accent);
-  letter-spacing: -0.025em;
-  line-height: 1.05;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  max-width: 14ch;
+}
+
+/* Portrait — reveals when she clicks "Me apunto" */
+.celebration-portrait {
+  width: clamp(220px, 32vw, 400px);
+  height: clamp(220px, 32vw, 400px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;
+  border: 5px solid var(--color-bg);
+  box-shadow:
+    0 0 0 1px var(--color-border),
+    0 20px 56px rgba(60, 40, 25, 0.22),
+    0 0 80px rgba(196, 130, 106, 0.35);
+  opacity: 0;
+  transform: scale(0.7) translateY(8px);
+  animation: reveal-portrait 800ms cubic-bezier(0.34, 1.56, 0.64, 1) 150ms forwards;
+  z-index: 1;
+  position: relative;
+}
+@keyframes reveal-portrait {
+  0%   { opacity: 0; transform: scale(0.7) translateY(8px); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@media (max-width: 380px) {
+  .celebration-portrait { width: 200px; height: 200px; }
 }
 .celebration .sub {
-  font-size: var(--fs-h2);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.2vw + 0.875rem, 2.5rem);
   color: var(--color-text);
-  max-width: 36ch;
+  max-width: 24ch;
   font-weight: 500;
+  line-height: 1.2;
 }
 .celebration .detail {
-  font-size: var(--fs-body);
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 0.6vw + 0.95rem, 1.375rem);
   color: var(--color-text-muted);
-  max-width: 44ch;
+  max-width: 36ch;
   line-height: 1.5;
 }
 
 /* ============================================
-   Confetti
+   Petals (replaces confetti — softer, organic)
    ============================================ */
 .confetti {
   position: absolute;
@@ -388,44 +446,24 @@ main.is-hidden { opacity: 0; pointer-events: none; }
 }
 .confetti-piece {
   position: absolute;
-  top: -24px;
-  width: 10px;
+  top: -32px;
+  width: 12px;
   height: 16px;
   background: var(--color-accent);
-  animation: fall var(--duration, 3s) linear var(--delay, 0s) forwards;
-  opacity: 0.95;
+  border-radius: 65% 35% 65% 35% / 60% 60% 40% 40%;
+  animation: fall var(--duration, 4s) linear var(--delay, 0s) forwards;
+  opacity: 0.9;
   will-change: transform, opacity;
 }
 @keyframes fall {
-  0%   { transform: translateY(0)     rotate(0deg);   opacity: 1; }
-  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  0%   { transform: translateY(0)     rotate(0deg)   translateX(0);    opacity: 1; }
+  50%  { transform: translateY(55vh)  rotate(180deg) translateX(20px); opacity: 0.9; }
+  100% { transform: translateY(110vh) rotate(540deg) translateX(-10px); opacity: 0; }
 }
 
 /* ============================================
-   Share button
+   (Share button removed — celebration is private)
    ============================================ */
-.share-btn {
-  margin-top: var(--space-4);
-  background: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  padding: var(--space-3) var(--space-6);
-  min-height: 44px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-size: var(--fs-body);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base), transform var(--transition-fast);
-}
-.share-btn:hover { background: var(--color-surface-2); transform: translateY(-1px); }
-.share-btn:active { transform: translateY(0); }
-.share-btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
-.share-btn.is-copied {
-  background: var(--color-success);
-  color: oklch(98% 0 0);
-  border-color: var(--color-success);
-}
 
 /* ============================================
    Reduced motion
@@ -441,8 +479,8 @@ main.is-hidden { opacity: 0; pointer-events: none; }
    Mobile tweaks
    ============================================ */
 @media (max-width: 380px) {
-  .btn-yes { min-width: 180px; padding: var(--space-4) var(--space-8); }
-  .invitation h1 { font-size: clamp(1.625rem, 8vw, 2rem); }
+  .btn-yes { min-width: 180px; padding: var(--space-4) var(--space-8); font-size: 1.25rem; }
+  .invitation h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); }
 }
 </style>
 </head>
@@ -452,30 +490,9 @@ main.is-hidden { opacity: 0; pointer-events: none; }
 <header class="site-header">
   <div class="brand">
     <svg class="brand-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- Pixel-art heart -->
-      <g fill="currentColor">
-        <rect x="4"  y="8"  width="4" height="4" rx="0.5"/>
-        <rect x="8"  y="4"  width="4" height="4" rx="0.5"/>
-        <rect x="20" y="4"  width="4" height="4" rx="0.5"/>
-        <rect x="24" y="8"  width="4" height="4" rx="0.5"/>
-        <rect x="4"  y="12" width="24" height="4" rx="0.5"/>
-        <rect x="4"  y="16" width="24" height="4" rx="0.5"/>
-        <rect x="8"  y="20" width="16" height="4" rx="0.5"/>
-        <rect x="12" y="24" width="8"  height="4" rx="0.5"/>
-      </g>
-      <!-- Circuit traces -->
-      <g stroke="currentColor" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round">
-        <path d="M16 28 L16 31"/>
-        <path d="M1 14 L4 14"/>
-        <path d="M28 14 L31 14"/>
-      </g>
-      <g fill="currentColor" opacity="0.55">
-        <circle cx="16" cy="31" r="1"/>
-        <circle cx="1"  cy="14" r="1"/>
-        <circle cx="31" cy="14" r="1"/>
-      </g>
+      <path fill="currentColor" d="M16 27.5 C 16 27.5, 4 20, 4 12.5 C 4 8.91, 6.91 6, 10.5 6 C 12.74 6, 14.78 7.18, 16 9 C 17.22 7.18, 19.26 6, 21.5 6 C 25.09 6, 28 8.91, 28 12.5 C 28 20, 16 27.5, 16 27.5 Z"/>
     </svg>
-    <span class="brand-name">Mijo.dev</span>
+    <span class="brand-name">Mijo</span>
   </div>
   <button class="theme-toggle" type="button" aria-label="Cambiar tema claro u oscuro">
     <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -489,15 +506,15 @@ main.is-hidden { opacity: 0; pointer-events: none; }
 </header>
 
 <main id="main">
-  <span class="eyebrow">Una invitación · v1.0</span>
+  <span class="eyebrow">Una invitación</span>
 
   <section class="invitation">
     <h1>
-      <span class="accent">Soficita</span>, declaro un bug crítico:<br>
-      me he enamorado.<br>
-      El único fix conocido es una <span class="accent">cena</span> contigo.
+      <span class="accent">Soficita</span>, estoy aburrido de escribir.<br>
+      En lugar de mandarte un mensaje, monté esto para proponerte algo:<br>
+      ¿salimos al <span class="accent">parque</span>, tocas la <span class="accent">guitarra</span> y dejamos pasar el rato juntos esta noche?
     </h1>
-    <p class="subtitle">¿Aceptas el commit, o seguimos en rama local para siempre?</p>
+    <p class="subtitle">¿Te apuntas al plan?</p>
   </section>
 
   <p class="countdown" aria-live="polite">
@@ -505,11 +522,11 @@ main.is-hidden { opacity: 0; pointer-events: none; }
   </p>
 
   <div class="choices">
-    <button class="btn btn-yes" type="button" id="btn-yes" aria-label="Aceptar la invitación">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
-        <polyline points="20 6 9 17 4 12"/>
+    <button class="btn btn-yes" type="button" id="btn-yes" aria-label="Aceptar el plan">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
       </svg>
-      Sí, acepto
+      Me apunto
     </button>
     <button class="btn btn-no" type="button" id="btn-no" aria-label="Rechazar la invitación">
       No, gracias
@@ -517,19 +534,17 @@ main.is-hidden { opacity: 0; pointer-events: none; }
   </div>
 
   <p class="footnote">
-    Con cariño (y algo de azúcar sintáctica),<br>
+    Con un poco de aburrimiento y mucho cariño,<br>
     <span class="signature">— Mijo</span>
   </p>
 </main>
 
 <aside class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebration-title">
   <div class="confetti" id="confetti" aria-hidden="true"></div>
-  <h2 id="celebration-title">¡Yesss! 🎉</h2>
-  <p class="sub">Soficita dijo que <strong>SÍ</strong>.</p>
-  <p class="detail">La cena está servida, literalmente. 🍝<br>Prepárate para el mejor merge del año.</p>
-  <button class="share-btn" type="button" id="share-btn" aria-label="Copiar el enlace al portapapeles">
-    📋 Compartir invitación
-  </button>
+  <img class="celebration-portrait" src="9091.png" alt="Mijo, sonriendo" width="1451" height="1512">
+  <h2 id="celebration-title">¡Es un plan!</h2>
+  <p class="sub">Soficita se apunta. Nos vemos esta noche en el parque.</p>
+  <p class="detail">La guitarra ya está afinada. Solo faltas tú.</p>
 </aside>
 
 <script>
@@ -576,32 +591,107 @@ main.is-hidden { opacity: 0; pointer-events: none; }
     countdownEl.textContent = String(seconds);
   }, 1000);
 
-  // === NO button behavior ===
+  // === NO button behavior (escape mode) ===
   const btnNo = document.getElementById('btn-no');
   let noAttempts = 0;
   const isTouchDevice = window.matchMedia('(hover: none)').matches;
+  let isEscaping = false; // re-entrancy guard for mousemove
+  let lastFleeAt = 0; // throttle: timestamp of last flee
+  const FLEE_RADIUS = 120; // px — button flees when cursor gets within this
+  const STAY_NEAR_MIN = 140; // px — new position must be at least this far from cursor
+  const STAY_NEAR_MAX = 240; // px — but not too far either
+  const FLEE_COOLDOWN_MS = 120; // min ms between two flees
+  const PADDING = 16; // viewport edge clearance
 
-  function teleportButton() {
-    if (reduceMotion) {
-      btnNo.classList.add('is-disabled');
-      return;
-    }
-    const rect = btnNo.getBoundingClientRect();
-    const w = rect.width, h = rect.height;
-    const maxX = Math.max(16, window.innerWidth  - w - 16);
-    const maxY = Math.max(16, window.innerHeight - h - 16);
+  function makeFixed() {
     btnNo.style.position = 'fixed';
-    btnNo.style.left = (16 + Math.random() * (maxX - 16)) + 'px';
-    btnNo.style.top  = (16 + Math.random() * (maxY - 16)) + 'px';
     btnNo.style.right = 'auto';
     btnNo.style.bottom = 'auto';
   }
 
+  function fleeFromCursor(mouseX, mouseY) {
+    // Always release the escape lock first so future moves can trigger again
+    isEscaping = false;
+
+    if (reduceMotion) {
+      btnNo.classList.add('is-disabled');
+      document.removeEventListener('mousemove', onMouseMove);
+      return;
+    }
+
+    // Throttle: don't flee again too quickly
+    const now = performance.now();
+    if (now - lastFleeAt < FLEE_COOLDOWN_MS) return;
+
+    const rect = btnNo.getBoundingClientRect();
+    const bw = rect.width || 96;
+    const bh = rect.height || 44;
+
+    // Clamp viewport bounds
+    const maxX = Math.max(PADDING, window.innerWidth  - bw - PADDING);
+    const maxY = Math.max(PADDING, window.innerHeight - bh - PADDING);
+
+    // Vector from cursor to button center
+    const btnCX = rect.left + bw / 2;
+    const btnCY = rect.top  + bh / 2;
+    const dx = btnCX - mouseX;
+    const dy = btnCY - mouseY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist >= FLEE_RADIUS) return; // cursor is far enough, do nothing
+
+    lastFleeAt = now;
+
+    // Normalize direction away from cursor
+    const nx = dist > 0 ? dx / dist : (Math.random() > 0.5 ? 1 : -1);
+    const ny = dist > 0 ? dy / dist : (Math.random() > 0.5 ? 1 : -1);
+
+    // Random distance within the "stay near" band, biased toward the flee direction
+    const fleeDist = STAY_NEAR_MIN + Math.random() * (STAY_NEAR_MAX - STAY_NEAR_MIN);
+
+    // Target position — along the flee vector from the cursor
+    let newX = mouseX + nx * fleeDist - bw / 2;
+    let newY = mouseY + ny * fleeDist - bh / 2;
+
+    // Clamp to viewport
+    newX = Math.max(PADDING, Math.min(maxX, newX));
+    newY = Math.max(PADDING, Math.min(maxY, newY));
+
+    // If clamping pushed it back too close to cursor, pick a random safe spot
+    const finalCX = newX + bw / 2;
+    const finalCY = newY + bh / 2;
+    const finalDist = Math.sqrt((finalCX - mouseX) ** 2 + (finalCY - mouseY) ** 2);
+    if (finalDist < STAY_NEAR_MIN * 0.7) {
+      // fallback: random position, avoiding cursor proximity
+      let attempts = 0;
+      do {
+        newX = PADDING + Math.random() * (maxX - PADDING);
+        newY = PADDING + Math.random() * (maxY - PADDING);
+        attempts++;
+      } while (
+        attempts < 12 &&
+        Math.sqrt(((newX + bw / 2) - mouseX) ** 2 + ((newY + bh / 2) - mouseY) ** 2) < STAY_NEAR_MIN * 0.6
+      );
+    }
+
+    makeFixed();
+    btnNo.style.left = newX + 'px';
+    btnNo.style.top  = newY + 'px';
+  }
+
+  function onMouseMove(e) {
+    if (isEscaping) return;
+    isEscaping = true;
+    fleeFromCursor(e.clientX, e.clientY);
+  }
+
   function slowDownButton() {
     btnNo.classList.add('is-tiny');
+    document.removeEventListener('mousemove', onMouseMove);
   }
 
   if (isTouchDevice) {
+    // Touch: teleport then hide (existing behavior — keep unchanged)
     btnNo.addEventListener('touchstart', (e) => {
       e.preventDefault();
       noAttempts++;
@@ -612,21 +702,23 @@ main.is-hidden { opacity: 0; pointer-events: none; }
       }
       btnNo.style.display = 'none';
       setTimeout(() => {
-        const x = 16 + Math.random() * (window.innerWidth  - 100);
-        const y = 16 + Math.random() * (window.innerHeight - 60);
-        btnNo.style.position = 'fixed';
+        const x = PADDING + Math.random() * (window.innerWidth  - 100);
+        const y = PADDING + Math.random() * (window.innerHeight - 60);
+        makeFixed();
         btnNo.style.left = x + 'px';
         btnNo.style.top  = y + 'px';
-        btnNo.style.right = 'auto';
-        btnNo.style.bottom = 'auto';
         btnNo.style.display = 'inline-flex';
       }, 800);
     }, { passive: false });
   } else {
-    btnNo.addEventListener('mouseover', () => {
+    // Desktop: escape from cursor
+    if (!reduceMotion) {
+      document.addEventListener('mousemove', onMouseMove);
+    }
+    // Click attempt on btn-no also counts as an attempt
+    btnNo.addEventListener('click', () => {
       noAttempts++;
       if (noAttempts >= 3) slowDownButton();
-      teleportButton();
     });
   }
 
@@ -674,22 +766,7 @@ main.is-hidden { opacity: 0; pointer-events: none; }
     confettiEl.appendChild(frag);
   }
 
-  // === Share ===
-  const shareBtn = document.getElementById('share-btn');
-  const shareOriginalText = shareBtn.textContent;
-  shareBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      shareBtn.textContent = '✅ ¡Enlace copiado!';
-      shareBtn.classList.add('is-copied');
-    } catch (err) {
-      shareBtn.textContent = 'Copia el enlace manualmente';
-    }
-    setTimeout(() => {
-      shareBtn.textContent = shareOriginalText;
-      shareBtn.classList.remove('is-copied');
-    }, 2200);
-  });
+  // (Share button removed — celebration is private between us)
 })();
 </script>
 </body>
